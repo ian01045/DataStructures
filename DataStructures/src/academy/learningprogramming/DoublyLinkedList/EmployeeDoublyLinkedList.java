@@ -102,4 +102,41 @@ public class EmployeeDoublyLinkedList {
         System.out.println();
 
     }
+
+    public boolean addBefore(Employee newEmployee, Employee existingEmployee){
+        if(head == null)
+        {
+            return false;
+        }
+
+        //find the existing employee
+        EmployeeNode2 current = head;
+        while(current != null & !current.getEmployee().equals(existingEmployee)){
+            current = current.getNext();
+        }
+
+        if(current == null){
+            return false;
+        }
+
+        EmployeeNode2 newNode = new EmployeeNode2(newEmployee);
+        newNode.setPrevious(current.getPrevious());
+        newNode.setNext(current);
+        current.setPrevious((newNode));
+
+        if(current == head){
+            head = newNode;
+        }else{
+            newNode.getPrevious().setNext(newNode);
+        }
+
+        size++;
+
+        return true;
+    }
+
+
+
+
+
 }
