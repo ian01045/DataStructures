@@ -20,9 +20,17 @@ public class Main {
          ht.put("Wilson",mikeWilson);
          ht.put("Smith",marySmith);
 
-//         ht.printHashTable();
+         ht.printHashTable();
 
-        System.out.println("Retrieve key Wilson" + ht.get("Wilson"));
+        System.out.println("Retrieve key: Wilson value: " + ht.get("Wilson"));
+        System.out.println("Retrieve key: Smith value: " + ht.get("Smith"));
+        System.out.println("Retrieve key: Ian value: " + ht.get("Ian"));
+
+        ht.remove("Wilson");
+        ht.remove("Jones");
+        ht.printHashTable();
+
+        System.out.println("Retrieve key Smith:" + ht.get("Smith"));
     }
 
 }
