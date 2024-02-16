@@ -15,5 +15,7 @@ public class Main {
         intTree.insert(32);
 
 
+        intTree.traverseInOrder();
+
     }
 }
