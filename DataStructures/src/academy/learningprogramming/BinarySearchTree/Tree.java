@@ -20,6 +20,37 @@ public class Tree {
         return null;
     }
 
+    public void delete(int value){
+        root = delete(root, value);
+    }
+
+    private TreeNode delete(TreeNode subtreeRoot, int value){
+        if(subtreeRoot == null){
+            return subtreeRoot;
+        }
+
+        if(value < subtreeRoot.getData()){
+            subtreeRoot.setLeftChild(delete(subtreeRoot.getLeftChild(),value));
+        }else if(value > subtreeRoot.getData()){
+            subtreeRoot.setRightChild(delete(subtreeRoot.getRightChild(),value));
+        }else{
+            // Case 1 and 2 : node to delete has 0 or 1 child
+            if(subtreeRoot.getLeftChild() == null){
+                return subtreeRoot.getRightChild();
+            }else if(subtreeRoot.getRightChild() == null){
+                return subtreeRoot.getLeftChild();
+            }
+
+            // Case 3 : node to delete has 2 children
+            subtreeRoot.setData(subtreeRoot.getRightChild().min());
+
+            // Replace the value in the subtreeRoot node with the smallest value
+            // from the right subtree
+            subtreeRoot.setRightChild(delete(subtreeRoot.getRightChild(),subtreeRoot.getData()));
+        }
+        return subtreeRoot;
+    }
+
     public int min(){
         if(root == null){
             return Integer.MIN_VALUE;
@@ -39,6 +70,18 @@ public class Tree {
     public void traverseInOrder(){
         if(root != null){
             root.traverseInOrder();
+        }
+    }
+
+    public void traversePreOrder(){
+        if(root != null){
+            root.traversePreOrder();
+        }
+    }
+
+    public void traversePostOrder(){
+        if(root != null){
+            root.traversePostOrder();
         }
     }
 }
